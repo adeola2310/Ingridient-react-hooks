@@ -49,7 +49,6 @@ const Ingredients = () => {
         ;
     }
 
-
     // without using firebase
     // const addIngridientHandler = ingridient =>{
     //     setIngridients(prevIngridients => [...prevIngridients, {id: Math.random().toString(), ...ingridient}])
