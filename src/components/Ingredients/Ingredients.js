@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 
 import IngredientForm from './IngredientForm';
 import Search from './Search';
@@ -30,7 +30,9 @@ const Ingredients = () => {
     }, []);
 
     // with the [] here, useEffect acts like componentDidMount
-
+   useEffect(()=>{
+       console.log('RENDERED INGRIDIENT', userIngridients);
+   }, [userIngridients]);
 
     const addIngridientHandler = ingridient => {
         fetch('https://reacthooks-update-3c5bb.firebaseio.com/ingredients.json', {
@@ -60,12 +62,19 @@ const Ingredients = () => {
             prevIngridients.filter(ingridient => ingridient.id !== ingridientId.id))
         console.log('item deleted');
     }
+
+
+    const filteredIngridient = useCallback(filteredIngrideint => {
+        setIngridients(filteredIngrideint);
+
+    }, [setIngridients]);
+
     return (
         <div className="App">
             <IngredientForm onAddIngridient={addIngridientHandler}/>
 
             <section>
-                <Search/>
+                <Search onloadIngridient={filteredIngridient}/>
                 <IngredientList ingredients={userIngridients} onRemoveItem={removeIngridientHandler}/>
             </section>
         </div>
