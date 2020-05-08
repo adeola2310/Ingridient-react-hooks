@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback, useMemo} from 'react';
 
 import IngredientForm from './IngredientForm';
 import Search from './Search';
@@ -86,6 +86,15 @@ const Ingredients = () => {
    setError(null);
    setisLoading(false);
     }
+
+
+     // use memo is used when u dnt want to re-render sth
+    // const ingridientList = useMemo(()=>{
+    //    return (
+    //        <IngredientList ingredients={userIngridients} onRemoveItem={removeIngridientHandler}/>
+    //    )
+    // }, [userIngridients, removeIngridientHandler])
+
 
     return (
         <div className="App">
